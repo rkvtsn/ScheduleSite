@@ -1,0 +1,32 @@
+﻿@model Mvc_Schedule.Models.DataModels.ModelViews.LessonsCreate
+
+<div id="page-title">Добавление звонков</div>
+
+@HTML.ValidatorScriptBlock()
+
+<div id="selector-block">
+<p>Примечание: добавляются звонки только с уникальным временем.</p>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<div class="lesson-time">
+		<div class="editor-label">
+			@Html.Label("Время 1-го звонка:")
+		</div>
+		<select class="hours" data-val="true" data-val-number="Значением поля Часы должно быть число." data-val-range="Поле Часы должно иметь значение между 0 и 24." data-val-range-max="24" data-val-range-min="0" data-val-required="Требуется поле Часы." id="Lessons_0__Hours" name="Lessons[0].Hours">
+		</select>
+		<span class="field-validation-valid" data-valmsg-for="Lessons[0].Hours" data-valmsg-replace="true"></span>
+		:
+		<select class="minutes" data-val-number="Значением поля Минуты должно быть число." data-val-range="Поле Минуты должно иметь значение между 0 и 60." data-val-range-max="60" data-val-range-min="0" data-val-required="Требуется поле Минуты." id="Lessons_0__Minutes" name="Lessons[0].Minutes">
+		</select>
+		<span class="field-validation-valid" data-valmsg-for="Lessons[0].Minutes" data-valmsg-replace="true"></span>
+	</div>
+
+	@HTML.AddingLessonScript()
+
+	<p>
+		<input id="add_lesson" type="submit" value="Добавить" />
+	</p>
+
+}
+</div>

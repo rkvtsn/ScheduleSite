@@ -1,0 +1,58 @@
+﻿@{
+	if (!Request.IsAuthenticated) { return; }
+	ViewBag.Action = ViewContext.RouteData.Values["action"].ToString();
+	ViewBag.Controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@helper ActionLinkActive(string name, string action, string controller) {
+	@Html.ActionLink(name, action, controller, null, (ViewBag.Action == action && ViewBag.Controller == controller) ? new { @class = "active" } : null)
+}
+
+@helper  ActionLinkActive(string name, string action, string controller, bool isControlled) {
+	if (isControlled)
+	{
+		@Html.ActionLink(name, action, controller, null, (ViewBag.Controller == controller) ? new {@class = "active"} : null)
+	}
+	else
+	{
+		@ActionLinkActive(name, action, controller)
+	}
+}
+
+<style>
+	#admin-menu {
+		padding: 4px;
+		margin: 4px;
+		display: block;
+		background: #fff;
+	}
+	#admin-menu a {
+		color: #000;
+		padding: 3px;
+		margin: 5px;
+	}
+ 	#admin-menu a.active {
+ 		color: #cc3300;
+ 		text-decoration: underline;
+ 	}
+ 		#admin-menu a:hover {
+ 			color: #999;
+ 		}
+</style>
+
+<div id="admin-menu">
+	
+	@ActionLinkActive("Редактор факультетов", "Index", "Facult", true)
+	
+	@ActionLinkActive("Новый факультет", "Create", "Facult")
+
+	@ActionLinkActive("Добавить группу", "Create", "Groups")
+
+	@ActionLinkActive("Редактор звонков", "Index", "Lessons", true)
+
+	@ActionLinkActive("Редактор дисциплин", "Index", "Subjects", true)
+	
+	@Html.ActionLink("Выйти", "LogOff", "Default")
+
+</div>
+
