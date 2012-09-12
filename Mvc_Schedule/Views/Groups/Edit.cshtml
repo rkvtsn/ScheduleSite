@@ -2,7 +2,7 @@
 
 <div id="page-title">Группа @Model.Name</div>
 
-@HTML.ValidatorScriptBlock()
+<link href="@Url.Content("~/Content/validation.css")" rel="stylesheet" type="text/css" />
 <div id="selector-block">
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
