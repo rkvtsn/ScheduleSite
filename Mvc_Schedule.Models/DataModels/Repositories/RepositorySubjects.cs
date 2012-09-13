@@ -13,7 +13,7 @@ namespace Mvc_Schedule.Models.DataModels.Repositories
 		public List<string> List(string start)
 		{
 			//
-			return (from x in _ctx.Subjects orderby x.Name where x.Name.StartsWith(start, StringComparison.InvariantCultureIgnoreCase) select x.Name).ToList();
+			return (from x in _ctx.Subjects orderby x.Name where x.Name.ToLower().StartsWith(start.ToLower()) select x.Name).ToList();
 		}
 
 
