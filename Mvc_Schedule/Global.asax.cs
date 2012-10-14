@@ -54,8 +54,8 @@ namespace Mvc_Schedule
 		protected void Application_Start()
 		{
 			AreaRegistration.RegisterAllAreas();
+			//Database.SetInitializer(new DbReCreate());
 			RegisterGlobalFilters(GlobalFilters.Filters);
-			Database.SetInitializer(new DbInitializer());
 			RegisterRoutes(RouteTable.Routes);
 		}
 	}

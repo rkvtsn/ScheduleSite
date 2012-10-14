@@ -30,6 +30,17 @@ namespace Mvc_Schedule.Models.DataModels
 		}
 	}
 
+	public class DbReCreate : DropCreateDatabaseAlways<ConnectionContext>
+	{
+		protected override void Seed(ConnectionContext context)
+		{
+			new List<string> { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье" }
+				.ForEach(x => context.Weekdays.Add(new Weekday { Name = x }));
+
+			base.Seed(context);
+		}
+	}
+
 	public class DbStartUp : CreateDatabaseIfNotExists<ConnectionContext>
 	{
 		protected override void Seed(ConnectionContext context)
