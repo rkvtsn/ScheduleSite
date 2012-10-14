@@ -118,7 +118,6 @@ namespace Mvc_Schedule.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(FormCollection scheduleRows)
 		{
-			var x = 1;
 			bool isValid = false;
 			var scheduletable = _db.Schedule.FormToTable(scheduleRows, out isValid);
 
