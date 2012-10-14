@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Mvc_Schedule.Models.DataModels.Entities;
@@ -12,10 +13,9 @@ namespace Mvc_Schedule.Models.DataModels.Repositories
 
 		public List<string> List(string start)
 		{
-			//
+			//return (from x in _ctx.Subjects orderby x.Name where x.Name.StartsWith(start) select x.Name).ToList();
 			return (from x in _ctx.Subjects orderby x.Name where x.Name.ToLower().StartsWith(start.ToLower()) select x.Name).ToList();
 		}
-
 
 		public List<Subject> List()
 		{

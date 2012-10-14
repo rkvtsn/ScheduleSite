@@ -95,22 +95,46 @@ namespace Mvc_Schedule.Controllers
 		//
 		// POST: /Schedule/Create
 
+		//[Authorize]
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult Create(ScheduleTableCreate scheduletable)
+		//{
+		//    if (ModelState.IsValid)
+		//    {
+		//        _db.Schedule.ListAdd(scheduletable);
+		//        _db.SaveChanges();
+		//        return RedirectToAction("Index", "Facult");
+		//    }
+
+		//    scheduletable.Lessons = _db.Lessons.List();
+		//    scheduletable.Weekdays = _db.Weekdays.List();
+
+		//    return View(scheduletable);
+		//}
+
 		[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(ScheduleTableCreate scheduletable)
+		public ActionResult Create(FormCollection scheduleRows)
 		{
-			if (ModelState.IsValid)
+			var x = 1;
+			bool isValid = false;
+			var scheduletable = _db.Schedule.FormToTable(scheduleRows, out isValid);
+
+			if (isValid)
 			{
 				_db.Schedule.ListAdd(scheduletable);
 				_db.SaveChanges();
 				return RedirectToAction("Index", "Facult");
 			}
 
+			ViewBag.Error = "Ошибка ввода, заполните все поля";
 			scheduletable.Lessons = _db.Lessons.List();
 			scheduletable.Weekdays = _db.Weekdays.List();
 
 			return View(scheduletable);
+			//return View(new ScheduleTableCreate()); // :Debug Mode
 		}
 
 

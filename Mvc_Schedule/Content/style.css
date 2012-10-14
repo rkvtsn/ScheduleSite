@@ -3,6 +3,13 @@
 	padding: 0;
 }
 
+@font-face
+{
+font-family: Segoe;
+src: url('segoeuil.ttf')
+    ,url('segoeuil.eot');
+}
+
 html {
 	height: 100%;
 }
@@ -10,7 +17,7 @@ header, nav, section, article, aside, footer {
 	display: block;
 }
 body {
-	font-family: 'Ubuntu', 'Century Gothic', sans-serif;
+	font-family: Segoe, 'Ubuntu', 'Century Gothic';
 	width: 100%;
 	height: 100%;
 	color: #fff;
@@ -163,7 +170,7 @@ input[type=submit] {
 		padding: 3px 3px;
 		margin: 10px 0;
 		font-size: 18px;
-		font-family: 'Ubuntu', 'Century Gothic', sans-serif;
+		font-family: Segoe, 'Ubuntu', 'Century Gothic', sans-serif;
 	}
 	input[type=submit]:hover {
 		cursor: pointer;
@@ -238,7 +245,7 @@ bw theme
 .bw ul li a, .bw a.remove_element, .bw a.add_element { color: #fff;}
 
 .bw h3:hover { background: #ccc; color: #000; }
-.bw .lesson { background: #fff; }
+.bw .lesson { /*background: #fff; color: #000;*/color: #fff; }
 .bw #page-title a {
 	color: #fff;
 }

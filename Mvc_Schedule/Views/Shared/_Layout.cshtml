@@ -6,9 +6,10 @@
 	<title>@ViewBag.Title / Расписание занятий АГПА</title>
 	<link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
 	<script src="@Url.Content("~/Scripts/jquery-1.8.0.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/changetheme.js")" type="text/javascript"></script>
 	<script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" type="text/javascript"></script>
-	<link rel="icon" type="image/png" href="@Url.Content("~/Content/images/favicon.png")" />
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css' />
+	<link rel="icon" type="image/png" href="@Url.Content("~/Content/images/favicon.png")" />
 </head>
 
 <body class="@if (HttpContext.Current.Request.Cookies["Theme"] != null && HttpContext.Current.Request.Cookies["Theme"].Value == "True") {@("bw")} else {@("orange")}" >
@@ -30,28 +31,4 @@
 		<p>Все права и законы верны в меру разумного 2012г.<br />Рукавицын Андрей <a href="mailto:crtmnk@gmail.com">rkvtsn@gmail.com</a></p>
 	</footer>
 </body>
-<script>
-
-	$(document).ready(function () {
-		$("#colorSwitcher").click(function () {
-			$.ajax({
-				type: "POST",
-				contentType: "application/json;charset=utf-8",
-				url: "/Default/ChangeTheme",
-				data: '{"id": "changeMe"}',
-				dataType: "json",
-				success: changeTheme
-			});
-		});
-	});
-
-	function changeTheme(data) {
-		$("body").fadeOut(function () {
-			if (data == "True")
-				$("body").addClass("bw");
-			else
-				$("body").removeClass();
-		}).fadeIn();
-	}
-</script>
 </html>

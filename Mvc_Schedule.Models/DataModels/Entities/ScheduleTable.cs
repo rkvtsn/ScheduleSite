@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Mvc_Schedule.Models.DataModels.Entities
@@ -12,6 +11,10 @@ namespace Mvc_Schedule.Models.DataModels.Entities
 		[MaxLength(32)]
 		[Display(Name = "Аудитория")]
 		public string Auditory { get; set; }
+
+		[MaxLength(127)]
+		[Display(Name = "Преподаватель")]
+		public string LectorName { get; set; }
 
 		//Нечетная неделя
 		[Display(Name = "Чётная неделя")]

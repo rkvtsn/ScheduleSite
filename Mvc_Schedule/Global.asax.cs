@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Mvc_Schedule.Models.DataModels;
 
 namespace Mvc_Schedule
 {
-	// Примечание: Инструкции по включению классического режима IIS6 или IIS7 
-	// см. по ссылке http://go.microsoft.com/?LinkId=9394801
-
 	public class MvcApplication : System.Web.HttpApplication
 	{
 		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -45,15 +38,15 @@ namespace Mvc_Schedule
 			);
 
 			routes.MapRoute(
-				"Schedule", // Имя маршрута
-				"Schedule/{action}/{id}/{week}", // URL-адрес с параметрами
-				new { controller = "Schedule", action = "Index", id = UrlParameter.Optional, week = UrlParameter.Optional } // Параметры по умолчанию
+				"Schedule",
+				"Schedule/{action}/{id}/{week}",
+				new { controller = "Schedule", action = "Index", id = UrlParameter.Optional, week = UrlParameter.Optional }
 			);
 
 			routes.MapRoute(
-				"Default", // Имя маршрута
-				"{controller}/{action}/{id}", // URL-адрес с параметрами
-				new { controller = "Default", action = "Index", id = UrlParameter.Optional } // Параметры по умолчанию
+				"Default",
+				"{controller}/{action}/{id}",
+				new { controller = "Default", action = "Index", id = UrlParameter.Optional }
 			);
 
 		}

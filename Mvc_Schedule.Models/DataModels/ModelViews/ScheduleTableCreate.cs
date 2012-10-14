@@ -27,8 +27,6 @@ namespace Mvc_Schedule.Models.DataModels.ModelViews
 		}
 
 		public IList<Lesson> Lessons { get; set; }
-		
-		//public IList<Subject> Subjects { get; set; }
 
 		public IList<Weekday> Weekdays { get; set; }
 	}

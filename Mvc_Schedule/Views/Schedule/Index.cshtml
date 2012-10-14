@@ -1,5 +1,6 @@
 ﻿@model Mvc_Schedule.Models.DataModels.ModelViews.ScheduleTableIndex
-		   
+
+
 <link href="@Url.Content("~/Content/style_schedule.css")" rel="stylesheet" type="text/css" />
 
 
@@ -16,33 +17,34 @@
 	<div class="weekday">
 		<p class="name">@weekday.Name</p>
 		<ul>
-			@if (Model.Schedule.Any(x => x.WeekdayId == weekday.WeekdayId))
-			{
-				foreach (var lesson in Model.Lessons)
+		@if (Model.Schedule.Any(x => x.WeekdayId == weekday.WeekdayId))
+		{
+		foreach (var lesson in Model.Lessons)
+		{
+		if (Model.Schedule.Any(x => x.LessonId == lesson.LessonId))
+		{
+		<li class="lesson">
+			<p class="time">@lesson.TimeString</p>
+			<div class="sublesson">
+				@foreach (var sublesson in Model.Schedule.Where(x => x.LessonId == lesson.LessonId && x.WeekdayId == weekday.WeekdayId))
 				{
-					<li class="lesson">
-						<p class="time">@lesson.TimeString</p>
-						<div class="sublesson">
-							@if (Model.Schedule.Any(x => x.LessonId == lesson.LessonId))
-							{
-								foreach (var sublesson in Model.Schedule.Where(x => x.LessonId == lesson.LessonId && x.WeekdayId == weekday.WeekdayId))
-								{
-									<p class="auditory">@sublesson.Auditory</p>
-									<p>@sublesson.Subject.Name</p>
-									<div class="ending"></div>
-								}
-							}
-						</div>
-						<div class="ending"></div>
-					</li>
+				<p class="auditory">@sublesson.Auditory</p>
+				<p>@sublesson.Subject.Name</p>
+				<p class="lectors">@sublesson.LectorName</p>
+				<div class="ending"></div>
 				}
-			}
-			else
-			{
-				<li class="lesson">
-					<p>Выходной</p>
-				</li>
-			}
+			</div>
+			<div class="ending"></div>
+		</li>
+		}
+		}
+		}
+	   else
+	   {
+			<li class="lesson">
+				<p>Выходной</p>
+			</li>
+	   }
 		</ul>
 	</div>
 	}
